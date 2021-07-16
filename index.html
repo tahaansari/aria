@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aria</title>
+</head>
+<body>
+	<input tabindex="1" id="signin-btn" type="submit" value="signin">
+	<div id="signin-box" style="display: none;">
+		<input type="text" placeholder="email">
+		<input type="text" placeholder="password">
+		<input type="submit" value="submit">
+		<input type="submit" value="cancel" id="signin-cancel">
+		<br>
+		<a href="#" id="forgotpassword-btn">forgot password</a>
+	</div>
+	<div id="forgotpassword-box" style="display: none;">
+		<input type="text" placeholder="email">
+		<input type="submit" value="submit">
+		<input type="submit" value="cancel" id="forgotpassword-cancel">
+	</div>
+	<script>
+		var signinbtn = document.getElementById('signin-btn');
+		var signinbox = document.getElementById('signin-box');
+		var forgotpasswordbtn = document.getElementById('forgotpassword-btn');
+		var forgotpasswordbox = document.getElementById('forgotpassword-box');
+		var signincancel = document.getElementById('signin-cancel');
+		var forgotpasswordcancel = document.getElementById('forgotpassword-cancel');
+		signinbtn.addEventListener('click',function(){
+			signinbtn.style.display = 'none';
+			signinbox.style.display = 'block';
+			signinbtn.setAttribute("aria-expanded", "true");
+			signincancel.removeAttribute("aria-expanded");
+		});
+		forgotpasswordbtn.addEventListener('click',function(){
+			signinbox.style.display = 'none';
+			forgotpasswordbox.style.display = 'block';
+			forgotpasswordbtn.setAttribute("aria-expanded", "true");
+			forgotpasswordcancel.removeAttribute("aria-expanded");
+		});
+		signincancel.addEventListener('click',function(){
+			signinbox.style.display = 'none';
+			signinbtn.style.display = 'block';
+			signincancel.setAttribute("aria-expanded", "false");
+			signinbtn.removeAttribute("aria-expanded");
+		});
+		forgotpasswordcancel.addEventListener('click',function(){
+			forgotpasswordbox.style.display = 'none';
+			signinbox.style.display = 'block';
+			forgotpasswordcancel.setAttribute("aria-expanded", "false");
+			forgotpasswordbtn.removeAttribute("aria-expanded");
+		});
+	</script>
+</body>
+</html>
